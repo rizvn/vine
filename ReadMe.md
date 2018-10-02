@@ -12,8 +12,6 @@ The ```vine``` object is created once. All subsequent imports will return the sa
 within the application. This allows the ```vine``` object to be used as a singleton 
 
 #### Initialise
-
-    import vine from Vine
     
     vine.setData({
       buttonsPressed: 0,
