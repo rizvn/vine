@@ -1,4 +1,4 @@
-export class Vine {
+class Vine {
   //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions
   // e.g. { "my_event": [ (data) => Void , (data) => Void  ] }
   subscribers = {};
