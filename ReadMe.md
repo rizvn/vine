@@ -6,7 +6,7 @@ A js pub-sub library
 
 #### Import Vine
   
-    import vine from "vine-pub-sub"
+    import vine from "vine-pubsub"
       
 The ```vine``` object is created once. All subsequent imports will return the same ```vine``` object 
 within the application. This allows the ```vine``` object to be used as a singleton 
