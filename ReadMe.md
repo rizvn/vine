@@ -1,5 +1,5 @@
 # Vine
-A js pub-sub library
+A js pub-sub library, for state management
 
 
 ## Usage
@@ -41,7 +41,7 @@ would have been updated by an event handler function.
     vine.publish("button_pressed", { buttonName: "like" })
 
 
-This will publish an event called "button_pressed", the json ```{ buttonName: "like" }``, will be sent to
+This will publish an event called "button_pressed", the json ```{ buttonName: "like" }```, will be sent to
  any EventHandler function registered to handle the event. 
 
    
@@ -59,7 +59,7 @@ The above registers an event handler function to the `buttonPressed` event.
 
 The function takes 2 arguments the currentData held in vine and the event data. The function mutates the global data, using the event data. 
 
-The mutated global data is then returned, which now becomes the data held in vine. All registers subscriber function 
+The mutated global data is then returned, which now becomes the data held in vine. All registers subscriber functions 
 for this event will now be called with the new global data. 
 
 #### Access all data 
