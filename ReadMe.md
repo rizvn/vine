@@ -32,7 +32,7 @@ setData method can be used to set the initial json for the app.
       })
       
 The subscribe function takes 2 arguments an event name, and callback function. The callback function
-will receive the **all the data** held in vine. **Note** This is not the event data, but the data held in vine, which 
+will receive **all the data** held in vine. **Note** This is not the event data, but the data held in vine, which 
 would have been updated by an event handler function. 
 
 
@@ -41,7 +41,7 @@ would have been updated by an event handler function.
     vine.publish("button_pressed", { buttonName: "like" })
 
 
-This will publish an event called "button_pressed". the json ```{ buttonName: "like" }``, will be sent to
+This will publish an event called "button_pressed", the json ```{ buttonName: "like" }``, will be sent to
  any EventHandler function registered to handle the event. 
 
    
@@ -60,7 +60,7 @@ The above registers an event handler function to the `buttonPressed` event.
 The function takes 2 arguments the currentData held in vine and the event data. The function mutates the global data, using the event data. 
 
 The mutated global data is then returned, which now becomes the data held in vine. All registers subscriber function 
-for this event will now be called with the new global data.
+for this event will now be called with the new global data. 
 
 #### Access all data 
 
@@ -75,8 +75,6 @@ The above will return the complete json held within vine.
     })
     
 The above will return the complete json held within vine.
-
-
 
 
 ## Example with react
