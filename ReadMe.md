@@ -84,6 +84,7 @@ The above will return the complete json held within vine.
     import React from "react"
     import vine from "vine-pubsub"
     
+    //========== Initialise global data =======================
     //set initial global data
     vine.setData({
       buttonPressed: 0,
@@ -97,6 +98,8 @@ The above will return the complete json held within vine.
     })
     
     
+    
+    //========== Display counter ==============================
     class ButtonCounter extends React.Component{
     
       componentWillMount(){
@@ -123,6 +126,8 @@ The above will return the complete json held within vine.
       }
     }
     
+    
+    //========== Display last button clicked =================
     class LastButtonMessage extends React.Component{
     
       componentWillMount(){
@@ -150,7 +155,7 @@ The above will return the complete json held within vine.
       }
     }
     
-    
+    //========== Button to publish events =================
     function Button(props){
     
       return(
