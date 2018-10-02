@@ -172,3 +172,7 @@ The above will return the complete json held within vine.
     }
  
  
+ ## License
+ 
+ MIT
+ 
