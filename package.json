@@ -6,7 +6,7 @@
   "author": "Riz <riz247@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "transpile": "babel --preset @babel/preset-react src/vine.js -o dist/vine.js"
+    "transpile": "babel --preset babel-preset-es2017 src/vine.js -o dist/vine.js"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",

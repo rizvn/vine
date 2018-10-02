@@ -1,7 +1,6 @@
 class Vine {
 
-
-  constructor(){
+  constructor() {
 
     //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions
     // e.g. { "my_event": [ (data) => Void , (data) => Void  ] }
@@ -14,16 +13,14 @@ class Vine {
     //the update data function takes current data, and event data, the returned value is set as the new datas
     // e.g. { "my_event": [ (json) => Void , (json) => json  ] }
     this.eventHandlers = {};
-
   }
-
 
   /**
    * Publish event
    * @param eventName: String - name of the event
    * @param eventData: Json   - event data
    */
-  publish(eventName, eventData){
+  publish(eventName, eventData) {
     let eventHandler = this.eventHandlers[eventName];
     this.data = eventHandler(this.data, eventData);
 
@@ -36,12 +33,12 @@ class Vine {
    * @param eventName: String - name of event
    * @param receiver function : (json) => void
    */
-  subscribe(eventName, receiver){
-    if(!this.subscribers.hasOwnProperty(eventName)) {
-      this.subscribers[eventName] = []
+  subscribe(eventName, receiver) {
+    if (!this.subscribers.hasOwnProperty(eventName)) {
+      this.subscribers[eventName] = [];
     }
 
-    this.subscribers[eventName].push(receiver)
+    this.subscribers[eventName].push(receiver);
   }
 
   /**
@@ -57,23 +54,23 @@ class Vine {
    * Get all data held. This can be used on component initialisation,
    * set up a components initial state
    */
-  getData(){
-    return this.data
+  getData() {
+    return this.data;
   }
 
-  setData(data){
-    this.data = data
+  setData(data) {
+    this.data = data;
   }
 
   /**
    * run callback function with data. This can be used on component initialisation,
    * set up a components initial state
    */
-  withData(callback){
-    callback(this.data)
+  withData(callback) {
+    callback(this.data);
   }
 }
 
 const vine = new Vine();
 
-export default vine
+export default vine;
