@@ -1,35 +1,34 @@
 export class Vine {
   //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions
   // e.g. { "my_event": [ (data) => Void , (data) => Void  ] }
-  subscribers = {};
+  subscribers = {}
 
   //holds global data
-  data = {};
+  data = {}
+
+  //hold a list of event handler functions, the key is the event name, function is used update data
+  //the update data function takes current data, and event data, the returned value is set as the new datas
+  // e.g. { "my_event": [ (json) => Void , (json) => json  ] }
+  eventHandlers = {}
 
 
   /**
-   *
-   * @param eventName: String name of event
-   * @param updater: a function which mutates current json to
-   * target json, the result will become the new data
-   * , the res: (json) => json
+   * Publish event
+   * @param eventName: String - name of the event
+   * @param eventData: Json   - event data
    */
-  publish(eventName, updater){
-    this.data = updater(this.data);
+  publish(eventName, eventData){
+    let eventHandler = this.eventHandlers[eventName]
+    this.data = eventHandler(this.data, eventData)
 
     //notify subscribers
     this.subscribers[eventName].map(func => func(this.data));
   }
 
   /**
-   *
-   * @param eventName name of event to subscribe to
-   * @param receiver callback function which is called when an event is fired.
-   *        It will receive event name and json. This reciever function is
-   *        defined in the component to update the components state
-   *
-   *        Signature:
-   *          (eventName: String, data: json)
+   * Register function to receive data when an event occurs
+   * @param eventName: String - name of event
+   * @param receiver function : (json) => void
    */
   subscribe(eventName, receiver){
     if(!this.subscribers.hasOwnProperty(eventName)) {
@@ -37,6 +36,15 @@ export class Vine {
     }
 
     this.subscribers[eventName].push(receiver)
+  }
+
+  /**
+   * Register a function to mutate global data on event
+   * @param eventName: String - name of the event
+   * @param handlerFunction: (currentData: json: eventData: json) => newdata: json  - used to update state on event, this must return json
+   */
+  setEventHandler(eventName, handlerFunction) {
+    this.eventHandlers[eventName] = handlerFunction;
   }
 
   /**
@@ -50,9 +58,16 @@ export class Vine {
   setData(data){
     this.data = data
   }
+
+  /**
+   * run callback function with data. This can be used on component initialisation,
+   * set up a components initial state
+   */
+  withData(callback){
+    callback(this.data)
+  }
 }
 
-
-const vine = new Vine();
+const vine = new Vine()
 
 export default vine
