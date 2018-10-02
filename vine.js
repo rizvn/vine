@@ -1,15 +1,15 @@
 export class Vine {
   //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions
   // e.g. { "my_event": [ (data) => Void , (data) => Void  ] }
-  subscribers = {}
+  subscribers = {};
 
   //holds global data
-  data = {}
+  data = {};
 
   //hold a list of event handler functions, the key is the event name, function is used update data
   //the update data function takes current data, and event data, the returned value is set as the new datas
   // e.g. { "my_event": [ (json) => Void , (json) => json  ] }
-  eventHandlers = {}
+  eventHandlers = {};
 
 
   /**
@@ -18,8 +18,8 @@ export class Vine {
    * @param eventData: Json   - event data
    */
   publish(eventName, eventData){
-    let eventHandler = this.eventHandlers[eventName]
-    this.data = eventHandler(this.data, eventData)
+    let eventHandler = this.eventHandlers[eventName];
+    this.data = eventHandler(this.data, eventData);
 
     //notify subscribers
     this.subscribers[eventName].map(func => func(this.data));
@@ -68,6 +68,6 @@ export class Vine {
   }
 }
 
-const vine = new Vine()
+const vine = new Vine();
 
 export default vine
