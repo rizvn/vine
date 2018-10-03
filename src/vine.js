@@ -1,8 +1,6 @@
 class Vine {
 
-
   constructor(){
-
     //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions
     // e.g. { "my_event": [ (data) => Void , (data) => Void  ] }
     this.subscribers = {};
@@ -15,6 +13,10 @@ class Vine {
     // e.g. { "my_event": [ (json) => Void , (json) => json  ] }
     this.eventHandlers = {};
 
+
+    //holds a list of event interceptor functions, which intercept published events
+    //before they are sent to the event handler
+    this.eventInterceptors = [];
   }
 
 
@@ -25,10 +27,18 @@ class Vine {
    */
   publish(eventName, eventData){
     let eventHandler = this.eventHandlers[eventName];
+
+    //run any registered interceptors
+    this.eventInterceptors.map(func => func(eventName, eventData, this.data));
+
+    //run eventHandler and set result to data
     this.data = eventHandler(this.data, eventData);
 
     //notify subscribers
-    this.subscribers[eventName].map(func => func(this.data));
+    let subscribers = this.subscribers[eventName];
+
+    if(subscribers)
+      subscribers.map(func => func(this.data));
   }
 
   /**
@@ -51,6 +61,15 @@ class Vine {
    */
   setEventHandler(eventName, handlerFunction) {
     this.eventHandlers[eventName] = handlerFunction;
+  }
+
+
+  /**
+   * A callback function which is able to intercept events
+   * @param interceptorFunction (eventName, eventData, globalData) => Void
+   */
+  addEventInterceptor(interceptorFunction){
+    this.eventInterceptors.push(interceptorFunction);
   }
 
   /**
@@ -76,4 +95,4 @@ class Vine {
 
 const vine = new Vine();
 
-export default vine
+module.exports = { "vine": Vine, "Vine": Vine };
