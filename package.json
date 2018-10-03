@@ -2,26 +2,16 @@
   "name": "vine-pubsub",
   "version": "1.0.3",
   "description": "A pub sub implementation to manage state. This can be used as an alternative to Redux",
-  "main": "dist/vine.js",
+  "main": "src/vine.js",
   "author": "Riz <riz247@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "transpile": "babel --preset babel-preset-es2017 src/vine.js -o dist/vine.js",
     "test": "jest"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2017": "^6.24.1",
     "install": "^0.12.1",
     "jest": "^23.6.0",
     "npm": "^6.4.1"
-  },
-
-  "jest": {
-    "transform": {}
   },
   "repository": {
     "type": "git",

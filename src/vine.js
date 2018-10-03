@@ -95,4 +95,4 @@ class Vine {
 
 const vine = new Vine();
 
-module.exports = { "vine": Vine, "Vine": Vine };
+module.exports = { "vine": vine, "Vine": Vine };
