@@ -160,8 +160,8 @@ The above will return the complete json held within vine.
             Like
           </button>
     
-          <button onClick={()=> vine.publish("button_pressed", {"buttonName": "like"})}>
-            Not Like
+          <button onClick={()=> vine.publish("button_pressed", {"buttonName": "unlike"})}>
+            Unlike
           </button>
         </div>
       )
