@@ -60,6 +60,19 @@ The function takes 2 arguments the currentData held in vine and the event data. 
 The mutated global data is then returned, which now becomes the data held in vine. All registers subscriber functions 
 for this event will now be called with the new global data. 
 
+
+
+#### Register Event Interceptor
+  
+    vine.addEventInterceptor((eventName, eventData, globalData) => {
+       console.log("Event fired: " + eventName)    
+    });
+
+
+The above registers an eventInterceptor. This will called whenever an event is published. Before the event handler is 
+invoked. The interceptor callback function will receive 3 arguments, name of the event, data associated to the event
+and global data held in the vine
+
 #### Access all data 
 
     let allData = vine.getData()
