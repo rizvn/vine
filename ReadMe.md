@@ -6,7 +6,7 @@ A js pub-sub library, for state management
 
 #### Import Vine
   
-    import vine from "vine-pubsub"
+    import {vine} from "vine-pubsub"
       
 The ```vine``` object is created once. All subsequent imports will return the same ```vine``` object 
 within the application. This allows the ```vine``` object to be used as a singleton 
@@ -91,7 +91,7 @@ The above will return the complete json held within vine.
 ## Example with react
 
     import React from "react"
-    import vine from "vine-pubsub"
+    import {vine} from "vine-pubsub"
     
     //========== Initialise global data =======================
     //set initial global data

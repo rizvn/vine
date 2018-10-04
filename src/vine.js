@@ -95,6 +95,4 @@ class Vine {
 
 const vine = new Vine();
 
-module.exports.default = vine;
-
-module.exports = {"Vine": Vine };
+module.exports = { "vine": vine, "Vine": Vine };
