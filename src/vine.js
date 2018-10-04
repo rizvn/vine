@@ -1,9 +1,18 @@
 class Vine {
 
   constructor(){
-    //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions
-    // e.g. { "my_event": [ (data) => Void , (data) => Void  ] }
+    //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions id
+    // e.g. { "my_event": [ "s1" , "s2"] }
     this.subscribers = {};
+
+
+    //e.g. { "s1": (data) => Void , "s2": (data) => Void }
+    this.subscriberFunctions = {};
+
+
+
+    //counter used to generate id for each subscriber
+    this.subscriberId = 0;
 
     //holds global data
     this.data = {};
@@ -34,24 +43,54 @@ class Vine {
     //run eventHandler and set result to data
     this.data = eventHandler(this.data, eventData);
 
+
+    this.fireSubscribedFunctions(eventName)
+
+  }
+
+  fireSubscribedFunctions(eventName){
     //notify subscribers
     let subscribers = this.subscribers[eventName];
 
-    if(subscribers)
-      subscribers.map(func => func(this.data));
+    if(subscribers) {
+      subscribers.map(subscriberId => {
+        //get the subscriber function for id
+        let func = this.subscriberFunctions[subscriberId];
+
+        //if there is a function call it
+        if(func){
+          func(this.data)
+        }
+      });
+    }
   }
 
   /**
    * Register function to receive data when an event occurs
    * @param eventName: String - name of event
-   * @param receiver function : (json) => void
+   * @param func function : (json) => void
+   * @return id of the subscribed function
    */
-  subscribe(eventName, receiver){
+  subscribe(eventName, func){
+    let subscriberId = "s"+ ++this.subscriberId;
     if(!this.subscribers.hasOwnProperty(eventName)) {
       this.subscribers[eventName] = []
     }
 
-    this.subscribers[eventName].push(receiver)
+    this.subscriberFunctions[subscriberId] = func;
+    this.subscribers[eventName].push(subscriberId);
+    return subscriberId;
+  }
+
+
+  /**
+   * Register function to receive data when an event occurs
+   * @param eventName: String - name of event
+   * @param func function : (json) => void
+   * @return id of the subscribed function
+   */
+  unsubscribe(subscriberId, func){
+    this.subscriberFunctions[subscriberId] = null;
   }
 
   /**

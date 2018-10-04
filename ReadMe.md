@@ -25,14 +25,26 @@ setData method can be used to set the initial json for the app.
 
 #### Register a subscriber 
       
-      vine.subscribe("button_pressed", (data) => {
+      let subscriberId = vine.subscribe("button_pressed", (data) => {
         console.log("Button Press count: "+ data.buttonsPressed);
       })
       
-The subscribe function takes 2 arguments an event name, and callback function. The callback function
+The subscribe function takes 2 arguments an event name, and callback function, the return value is a subscription id,
+which can then be used to unsubscribe. The callback function
 will receive **all the data** held in vine. **Note** This is not the event data, but the data held in vine, which 
 would have been updated by an event handler function. 
 
+
+#### Unregister a subscriber 
+      
+      let subscriberId = vine.subscribe("button_pressed", (data) => {
+        console.log("Button Press count: "+ data.buttonsPressed);
+      })
+            
+      vine.unsubscribe(subscriberId)
+      
+Upon subscription a globally unique subscription id is returned. This can be passed to ```unsubscribe()``` function 
+to unsubscribe the function
 
 #### Publish an event
           

@@ -28,7 +28,7 @@ test('Test event handler and publish', () => {
     return globalData;
   });
 
-  vine.publish("test_event", {"foo": "abc"})
+  vine.publish("test_event", {"foo": "abc"});
 
   vine.withData(globalData => {
     expect(globalData.foo).toBe("abc");
@@ -73,11 +73,11 @@ test('Test event interceptor ', () => {
 });
 
 
-test('Test subscriber ', () => {
+test('Test subscriber subscription ', () => {
   const vine = new Vine();
 
   var subcriberCalled = false;
-  var sunscriberData = {};
+  var subscriberData = {};
 
   vine.setEventHandler("test_event", (globalData, eventData) => {
     globalData.foo = eventData.foo;
@@ -86,12 +86,62 @@ test('Test subscriber ', () => {
 
   vine.subscribe("test_event", (data) => {
     subcriberCalled = true;
-    sunscriberData = data
+    subscriberData = data
   });
+;
 
   vine.publish("test_event", {"foo": "bar"});
 
   expect(subcriberCalled).toBe(true);
-  expect(sunscriberData.foo).toBe("bar");
+  expect(subscriberData.foo).toBe("bar");
+
+});
+
+
+test('Test subscriber unsubscribe ', () => {
+  const vine = new Vine();
+
+  var subcriberCallCount = 0;
+  var subscriberData = {};
+
+  vine.setEventHandler("test_event", (globalData, eventData) => {
+    globalData.foo = eventData.foo;
+    return globalData;
+  });
+
+  let subscriberId = vine.subscribe("test_event", (data) => {
+    subcriberCallCount = subcriberCallCount +1 ;
+    subscriberData = data
+  });
+
+
+  vine.publish("test_event", {"foo": "bar"});
+  vine.publish("test_event", {"foo": "bar"});
+
+  vine.unsubscribe(subscriberId);  // the function is unsubscribed
+
+  vine.publish("test_event", {"foo": "bar"});
+
+  expect(subcriberCallCount).toBe(2);
+
+});
+
+
+
+test('Test subscriber id', () => {
+  const vine = new Vine();
+
+
+
+  let subscriberId1= vine.subscribe("test_event", (data) => {
+
+  });
+
+  let subscriberId2 = vine.subscribe("fake_event", (data) => {
+
+  });
+
+  expect(subscriberId1).toBe("s1");
+  expect(subscriberId2).toBe("s2");
 
 });
