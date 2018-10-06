@@ -1,5 +1,5 @@
 # Vine
-A js pub-sub library, for state management. In libraries such as React.
+A js pub-sub library, for state management, in libraries such as React.
 
 
 ## Usage
