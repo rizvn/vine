@@ -1,5 +1,5 @@
 # Vine
-A js pub-sub library, for state management
+A js pub-sub library, for state management. In libraries such as React.
 
 
 ## Usage
@@ -52,9 +52,8 @@ to unsubscribe the function
 
 
 This will publish an event called "button_pressed", the json ```{ buttonName: "like" }```, will be sent to
- any EventHandler function registered to handle the event. 
-
-   
+ any event handler function registered to handle the event. 
+  
 
 #### Register Event Handler
   
@@ -81,7 +80,7 @@ for this event will now be called with the new global data.
     });
 
 
-The above registers an eventInterceptor. This will called whenever an event is published. Before the event handler is 
+The above registers an event interceptor. This will called whenever an event is published, before the event handler is 
 invoked. The interceptor callback function will receive 3 arguments, name of the event, data associated to the event
 and global data held in the vine
 
@@ -92,7 +91,6 @@ and global data held in the vine
 
 The above will return the complete json held within vine. 
 
-
     vine.withData(data => {
       console.log("Data held in vine: " + JSON.stringify(data))     
     })
@@ -102,10 +100,12 @@ The above will return the complete json held within vine.
 
 ## Example with react
 
+###### Import 
+
     import React from "react"
     import {vine} from "vine-pubsub"
     
-    //========== Initialise global data =======================
+###### Initialise global data 
     //set initial global data
     vine.setData({
       buttonPressed: 0,
@@ -119,8 +119,7 @@ The above will return the complete json held within vine.
     })
     
     
-    
-    //========== Display counter ==============================
+###### Component to display counter
     class ButtonCounter extends React.Component{
     
       componentWillMount(){
@@ -147,8 +146,9 @@ The above will return the complete json held within vine.
       }
     }
     
-    
-    //========== Display last button clicked =================
+
+###### Component to display name of last button pressed
+
     class LastButtonMessage extends React.Component{
     
       componentWillMount(){
@@ -176,7 +176,8 @@ The above will return the complete json held within vine.
       }
     }
     
-    //========== Button to publish events =================
+###### A button component to publish events
+
     function Button(props){
     
       return(
@@ -185,15 +186,15 @@ The above will return the complete json held within vine.
             Like
           </button>
     
-          <button onClick={()=> vine.publish("button_pressed", {"buttonName": "like"})}>
-            Not Like
+          <button onClick={()=> vine.publish("button_pressed", {"buttonName": "dislike"})}>
+            Dislike
           </button>
         </div>
       )
     }
  
  
- ## License
+## License
  
  MIT
  
