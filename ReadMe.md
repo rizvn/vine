@@ -57,7 +57,7 @@ This will publish an event called "button_pressed", the json ```{ buttonName: "l
 
 #### Register Event Handler
   
-    vine.setEventHander("button_pressed", (globalData, eventData) => {
+    vine.setEventHandler("button_pressed", (globalData, eventData) => {
       globalData.buttonsPressed    = globalData.buttonsPressed +1;
       globalData.lastButtonPressed = eventData.buttonName
       return globalData;
