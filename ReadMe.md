@@ -56,6 +56,7 @@ This will publish an event called "button_pressed", the json ```{ buttonName: "l
   
 
 #### Register Event Handler (optional)
+This is optional. If a custom event handler is not provided, The event data is merged into global data
   
     vine.setEventHandler("button_pressed", (globalData, eventData) => {
       globalData.buttonsPressed    = globalData.buttonsPressed +1;
@@ -63,7 +64,6 @@ This will publish an event called "button_pressed", the json ```{ buttonName: "l
       return globalData;
     })
 
-This is optional. If a custom event handler is not provided. The event data is merged into global data
 
 The above registers an event handler function to the `buttonPressed` event. 
 
