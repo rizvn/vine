@@ -1,8 +1,15 @@
 {
   "name": "vine-pubsub",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "A pub sub implementation to manage state. This can be used as an alternative to Redux",
-  "keywords": [ "state", "react", "pubsub", "events", "publish", "subscribe" ],
+  "keywords": [
+    "state",
+    "react",
+    "pubsub",
+    "events",
+    "publish",
+    "subscribe"
+  ],
   "main": "src/vine.js",
   "author": "Riz <riz247@gmail.com>",
   "license": "MIT",

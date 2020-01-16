@@ -1,15 +1,13 @@
 class Vine {
 
+
   constructor(){
     //hold a list of subscriber functions, the key is the event name, value is array of subscriber functions id
     // e.g. { "my_event": [ "s1" , "s2"] }
     this.subscribers = {};
 
-
     //e.g. { "s1": (data) => Void , "s2": (data) => Void }
     this.subscriberFunctions = {};
-
-
 
     //counter used to generate id for each subscriber
     this.subscriberId = 0;
@@ -26,7 +24,14 @@ class Vine {
     //holds a list of event interceptor functions, which intercept published events
     //before they are sent to the event handler
     this.eventInterceptors = [];
+
+    //default event handler merges event data with global data
+    this.defaultEventHandler = (a, b) => {
+      return Object.assign({}, a, b)
+    };
   }
+
+
 
 
   /**
@@ -35,7 +40,11 @@ class Vine {
    * @param eventData: Json   - event data
    */
   publish(eventName, eventData){
-    let eventHandler = this.eventHandlers[eventName];
+    var eventHandler = this.eventHandlers[eventName];
+
+    if(!eventHandler){
+      eventHandler = this.defaultEventHandler
+    }
 
     //run any registered interceptors
     this.eventInterceptors.map(func => func(eventName, eventData, this.data));

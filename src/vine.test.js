@@ -37,6 +37,18 @@ test('Test event handler and publish', () => {
 });
 
 
+test('Test default event handler and publish', () => {
+  const vine = new Vine();
+
+  vine.publish("test_event", {"foo": "abc"});
+
+  vine.withData(globalData => {
+    expect(globalData.foo).toBe("abc");
+  })
+
+});
+
+
 
 test('Test event interceptor ', () => {
   const vine = new Vine();
