@@ -5,7 +5,7 @@ test('Test setData() and withData() ', () => {
   vine.setData({"foo": "bar"});
 
   vine.withData(globalData => {
-    expect(globalData).toBe("bar");
+    expect(globalData.foo).toBe("bar" as string);
   })
 
 });
@@ -53,10 +53,10 @@ test('Test default event handler and publish', () => {
 test('Test event interceptor ', () => {
   const vine = new Vine();
 
-  var intercepted = false;
-  var interceptorEventData = {};
-  var intercetorGlobalData = {};
-  var interceptorEventName = {};
+  let intercepted = false;
+  let interceptorEventData = {};
+  let intercetorGlobalData = {};
+  let interceptorEventName = {};
 
   vine.setEventHandler("test_event", (globalData, eventData) => {
     globalData.foo = eventData.foo;
