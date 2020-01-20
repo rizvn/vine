@@ -17,8 +17,8 @@
     "url": "https://github.com/rizvn/vine/issues"
   },
   "scripts": {
-    "test": "jest",
-    "build": "npx typescript"
+    "test": "node_modules/.bin/jest",
+    "build": "node_modules/.bin/typescript"
   },
   "devDependencies": {
     "install": "^0.12.1",
