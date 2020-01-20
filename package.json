@@ -22,7 +22,9 @@
   "devDependencies": {
     "install": "^0.12.1",
     "jest": "^23.6.0",
-    "npm": "^6.4.1"
+    "npm": "^6.4.1",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5"
   },
   "repository": {
     "type": "git",
