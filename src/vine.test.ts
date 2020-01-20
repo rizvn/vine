@@ -1,4 +1,4 @@
-const Vine = require("./vine").Vine;
+import {Vine} from "./vine"
 
 test('Test setData() and withData() ', () => {
   const vine = new Vine();

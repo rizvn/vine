@@ -10,7 +10,7 @@
     "publish",
     "subscribe"
   ],
-  "main": "src/vine.js",
+  "main": "dist/vine.js",
   "author": "Riz <riz247@gmail.com>",
   "license": "MIT",
   "bugs": {
