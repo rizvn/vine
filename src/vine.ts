@@ -1,6 +1,6 @@
 
 interface Subscription {
-  (data: Object): void
+  (data: object): void
 }
 
 interface Subscriptions {
@@ -8,7 +8,7 @@ interface Subscriptions {
 }
 
 interface EventHandler {
-  (eventData: Object, globalData: Object) : Object;
+  (eventData: any, globalData: any) : any;
 }
 
 interface EventHandlers {
@@ -16,7 +16,7 @@ interface EventHandlers {
 }
 
 interface EventInterceptor {
-  (eventName: String, eventData: Object, data: Object) : void
+  (eventName: String, eventData: any, data: any) : void
 }
 
 interface EventSubscribers{
@@ -42,7 +42,7 @@ export class Vine {
 
 
   //holds global data
-  data: Object = {};
+  data: any = {};
 
 
   //hold a list of event handler functions, the key is the event name, function is used update data
@@ -53,10 +53,10 @@ export class Vine {
 
   //holds a list of event interceptor functions, which intercept published events
   //before they are sent to the event handler
-  eventInterceptors: Array<(eventName: String, eventData: Object, data: Object) => void> = [];
+  eventInterceptors: Array<(eventName: String, eventData: any, data: any) => void> = [];
 
   //default event handler merges event data with global data
-  defaultEventHandler : EventHandler = (a: Object, b: Object) => {
+  defaultEventHandler : EventHandler = (a: any, b: any) => {
     return Object.assign({}, a, b)
   };
 
@@ -77,7 +77,7 @@ export class Vine {
    * @param eventName: String - name of the event
    * @param eventData: Json   - event data
    */
-  publish(eventName: string, eventData: Object){
+  publish(eventName: string, eventData: any){
     let eventHandler = this.getEventHandler(eventName);
 
     //run any registered interceptors
@@ -126,8 +126,8 @@ export class Vine {
 
 
 
-  unsubscribe(subscriberId: string, func: Subscription){
-    this.subscriberFunctions[subscriberId] = (data: object) => { };
+  unsubscribe(subscriberId: string){
+    this.subscriberFunctions[subscriberId] = (data: any) => { };
   }
 
   /**
@@ -156,7 +156,7 @@ export class Vine {
     return this.data
   }
 
-  setData(data: Object){
+  setData(data: any){
     this.data = data
   }
 
@@ -164,7 +164,7 @@ export class Vine {
    * run callback function with data. This can be used on component initialisation,
    * set up a components initial state
    */
-  withData(callback: (data: Object) => void){
+  withData(callback: (data: any) => void){
     callback(this.data)
   }
 }
