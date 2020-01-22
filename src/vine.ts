@@ -113,7 +113,7 @@ export class Vine {
    * @param func function : (json) => void
    * @return id of the subscribed function
    */
-  subscribe(eventName: string, func: Subscription){
+  subscribe(eventName: string, func: Subscription): string{
     let subscriberId = "s"+ ++this.subscriberId;
     if(!this.subscribers.hasOwnProperty(eventName)) {
       this.subscribers[eventName] = []
