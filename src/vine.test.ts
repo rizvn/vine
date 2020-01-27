@@ -1,11 +1,11 @@
-const Vine = require("./vine").Vine;
+import {Vine} from "./vine"
 
 test('Test setData() and withData() ', () => {
   const vine = new Vine();
   vine.setData({"foo": "bar"});
 
   vine.withData(globalData => {
-    expect(globalData.foo).toBe("bar");
+    expect(globalData.foo).toBe("bar" as string);
   })
 
 });
@@ -53,10 +53,10 @@ test('Test default event handler and publish', () => {
 test('Test event interceptor ', () => {
   const vine = new Vine();
 
-  var intercepted = false;
-  var interceptorEventData = {};
-  var intercetorGlobalData = {};
-  var interceptorEventName = {};
+  let intercepted = false;
+  let interceptorEventData = {};
+  let intercetorGlobalData = {};
+  let interceptorEventName = {};
 
   vine.setEventHandler("test_event", (globalData, eventData) => {
     globalData.foo = eventData.foo;
@@ -88,8 +88,8 @@ test('Test event interceptor ', () => {
 test('Test subscriber subscription ', () => {
   const vine = new Vine();
 
-  var subcriberCalled = false;
-  var subscriberData = {};
+  let subcriberCalled = false;
+  let subscriberData : any = {};
 
   vine.setEventHandler("test_event", (globalData, eventData) => {
     globalData.foo = eventData.foo;
@@ -100,7 +100,7 @@ test('Test subscriber subscription ', () => {
     subcriberCalled = true;
     subscriberData = data
   });
-;
+
 
   vine.publish("test_event", {"foo": "bar"});
 

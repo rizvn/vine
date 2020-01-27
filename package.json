@@ -1,6 +1,6 @@
 {
   "name": "vine-pubsub",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A pub sub implementation to manage state. This can be used as an alternative to Redux",
   "keywords": [
     "state",
@@ -10,19 +10,22 @@
     "publish",
     "subscribe"
   ],
-  "main": "src/vine.js",
+  "main": "dist/vine.js",
   "author": "Riz <riz247@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rizvn/vine/issues"
   },
   "scripts": {
-    "test": "jest"
+    "test": "npx jest",
+    "build": "npx typescript"
   },
   "devDependencies": {
-    "install": "^0.12.1",
     "jest": "^23.6.0",
-    "npm": "^6.4.1"
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.5",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.4"
   },
   "repository": {
     "type": "git",
