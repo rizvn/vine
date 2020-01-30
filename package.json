@@ -1,6 +1,6 @@
 {
   "name": "vine-pubsub",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A pub sub implementation to manage state. This can be used as an alternative to Redux",
   "keywords": [
     "state",
@@ -11,6 +11,7 @@
     "subscribe"
   ],
   "main": "dist/vine.js",
+  "types": "dist/vine.d.ts",
   "author": "Riz <riz247@gmail.com>",
   "license": "MIT",
   "bugs": {
