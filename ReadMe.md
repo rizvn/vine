@@ -113,11 +113,6 @@ The above will return the complete json held within vine.
       lastButtonPressed: ""
     })
     
-    //Register event handler
-    vine.setEventHandler("button_pressed", (globalData, eventData) =>{
-      globalData.buttonPressed = globalData.buttonPressed +1;
-      globalData.lastButtonPressed = buttonName;
-    })
     
     
 ###### Component to display counter
